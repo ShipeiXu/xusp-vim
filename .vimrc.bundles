@@ -1,0 +1,264 @@
+
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+" " 查阅 :h vundle 获取更多细节和wiki以及FAQ
+
+"{
+    set nocompatible              " Must be first line"
+
+    let mapleader=','
+    filetype off                  " required
+
+    " set the runtime path to include Vundle and initialize
+    set rtp+=~/.vim/bundle/Vundle.vim
+    call vundle#rc()
+"}
+
+" Bundles {
+    Bundle 'VundleVim/Vundle.vim'
+
+    " ycm  代码补全, snippets代码块补全
+    Bundle 'Valloric/YouCompleteMe'
+    Bundle 'honza/vim-snippets'
+    Bundle 'SirVer/ultisnips'
+
+    " tagbar:函数名列表, easygrep, 搜索, nc:注释功能
+    Bundle 'majutsushi/tagbar'
+    Bundle 'EasyGrep'
+    Bundle 'scrooloose/nerdcommenter'
+
+    Bundle 'ctrlpvim/ctrlp.vim'
+
+    " 打造bash ide 自动增加shell文件头部"
+    Bundle 'WolfgangMehner/bash-support' 
+
+    Bundle 'tpope/vim-surround'
+    Bundle 'Yggdroot/indentLine'
+    Bundle 'Yggdroot/vim-mark'
+    Bundle 'vim-airline/vim-airline' 
+    Bundle 'scrooloose/nerdtree'
+    Bundle 'Xuyuanp/nerdtree-git-plugin'
+
+    Bundle 'altercation/vim-colors-solarized'
+    Bundle 'spf13/vim-colors'
+    Bundle 'flazz/vim-colorschemes'
+    Bundle 'tpope/vim-repeat'
+    Bundle 'jiangmiao/auto-pairs'
+    Bundle 'easymotion/vim-easymotion'
+
+    Bundle 'luochen1990/rainbow'
+
+    "Bundle 'klen/python-mode'
+    Bundle 'spf13/PIV'
+
+"    Bundle 'octol/vim-cpp-enhanced-highlight'
+    
+"}
+
+filetype plugin indent on    " required
+
+"tagbar config
+if isdirectory(expand("~/.vim/bundle/tagbar"))
+    nnoremap <Leader>tt :TagbarToggle<CR>  " 将开启tagbar的快捷键设置为　<Leader>tt
+    let g:tagbar_ctags_bin='/usr/local/bin/ctags'  " 设置ctags所在路径
+    "let g:tagbar_width=30　" 设置tagbar的宽度
+    "autocmd BufReadPost *.cpp,*.c,*.h,*.hpp,*.cc,*.cxx call tagbar#autoopen()　" 在某些情况下自动打开tagbar
+endif
+
+" easygrep 配置
+if isdirectory(expand("~/.vim/bundle/EasyGrep"))
+    " <Leader>vv  -" Grep for the word under the cursor, match all occurences.
+    " <Leader>vV  - Grep for the word under the cursor, match whole word.
+    " <Leader>vr  - Perform a global search search on the word under the cursor.
+    "                  and prompt for a pattern with which to replace it.
+    " <Leader>vo  - Select the files to search in and set grep options.
+endif
+
+" nerdcommenter  为代码添加注释,批量注释和反注释
+if isdirectory(expand("~/.vim/bundle/nerdcommenter"))
+    " 注释时自动加空格
+    " <leader>ca 在可选的注释方式之间切换，比如C/C++ 的块注释/* */和行注释//  
+    " <leader>cc 注释当前行
+    " <leader>c<space> 切换注释/非注释状态
+    " <leader>cs 以”性感”的方式注释
+    " <leader>cA 在当前行尾添加注释符，并进入Insert模式
+    " <leader>cu 取消注释
+    " <leader>c$ 从光标开始到行尾注释, 这个要说说因为c$也是从光标到行尾的快捷键, 这个按过逗号(,)要快一点按c$
+    "      2,cc 光标以下count行添加注释 
+    "      2,cu 光标以下count行取消注释
+    "      2,cm:光标以下count行添加块注释(2,cm)
+    "      Normal模式下，几乎所有命令前面都可以指定行数
+    "      Visual模式下执行命令，会对选中的特定区块进行注释/反注释
+    let g:NERDSpaceDelims=1  "增加一个空行"
+endif
+
+" ctrlp.vim
+if isdirectory(expand("~/.vim/bundle/ctrlp.vim"))
+    let g:ctrlp_map = '<leader>p'
+    let g:ctrlp_cmd = 'CtrlP'
+    nnoremap <leader>f :CtrlPMRU<CR>
+
+    let g:ctrlp_custom_ignore = {
+                \ 'dir':  '\v[\/]\.(git|hg|svn|rvm)$',
+                \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz|pyc)$',
+                \ }
+    let g:ctrlp_working_path_mode=0
+    let g:ctrlp_match_window_bottom=1
+    let g:ctrlp_max_height=15
+    let g:ctrlp_match_window_reversed=0
+    let g:ctrlp_mruf_max=500
+    let g:ctrlp_follow_symlinks=1
+endif
+
+
+"8. vim-surround 配置 
+if isdirectory(expand("~/.vim/bundle/vim-surround"))
+    "Normal mode
+    "-----------
+    "ds  - delete a surrounding
+    "cs  - change a surrounding
+    "ys  - add a surrounding
+    "yS  - add a surrounding and place the surrounded text on a new line + indent it
+    "yss - add a surrounding to the whole line
+    "ySs - add a surrounding to the whole line, place it on a new line + indent it
+    "ySS - same as ySs
+
+    "Visual mode
+    "-----------
+    "s   - in visual mode, add a surrounding
+    "S   - in visual mode, add a surrounding but place text on new line + indent it
+
+    "Insert mode
+    "-----------
+    "<CTRL-s> - in insert mode, add a surrounding
+    "<CTRL-s><CTRL-s> - in insert mode, add a new line + surrounding + indent
+    "<CTRL-g>s - same as <CTRL-s>
+    "<CTRL-g>S - same as <CTRL-s><CTRL-s>
+endif
+
+" indentLine 缩进指示线
+if isdirectory(expand("~/.vim/bundle/vim-surround"))
+    let g:indentLine_char='┆'
+    let g:indentLine_enabled = 2"
+endif
+
+" vim-mark, 可以给不同单词高亮
+if isdirectory(expand("~/.vim/bundle/vim-mark"))
+"    <leader>m       "标记光标下的单词
+"    [N]<leader>m    "标记光标下的单词到指定的高亮组。不同的单词不可放到同一个高亮组中，不同的高亮组拥有不同的颜色，默认有六组
+"    <leader>*       "如果光标不在任何标签上，跳到下一个最近的标签。否则会跳到下一个同组标签，也就是说在用一高亮组中进行跳转。
+"    <leader>#       "同上，往上跳
+"    <leader>/       "往下跳, 至任一标签
+"    <leader>?       "往下跳, 至任一标签
+"    :MarkClear      "清除所有标签，清除后不能恢复
+"    :Marks          "列出当前所定义的所有标签
+endif
+
+" 主题颜色, vim, iterm2, ls 三者保持一致
+if isdirectory(expand("~/.vim/bundle/vim-colorschemes"))
+    colorscheme solarized
+endif
+
+" nerdtree
+if isdirectory(expand("~/.vim/bundle/nerdtree"))
+    map <F3> :NERDTreeMirror<CR>
+    map <F3> :NERDTreeToggle<CR>
+endif
+
+" nerdtree-git-plugin
+if isdirectory(expand("~/.vim/bundle/nerdtree-git-plugin"))
+
+endif
+
+"vim-cpp-enhanced-highlight "高亮类，成员函数，标准库和模板 {
+    if isdirectory(expand("~/.vim/bundle/vim-cpp-enhanced-highlight"))
+        let g:cpp_class_scope_highlight = 1
+        let g:cpp_member_variable_highlight = 1
+        let g:cpp_concepts_highlight = 1
+        let g:cpp_experimental_simple_template_highlight = 1
+        "文件较大时使用下面的设置高亮模板速度较快，但会有一些小错误
+        "let g:cpp_experimental_template_highlight = 1
+    endif
+"}
+
+
+" YouCompleteMe {
+    if isdirectory(expand("~/.vim/bundle/YouCompleteMe"))
+        let g:acp_enableAtStartup = 0
+        let g:ycm_add_preview_to_completeopt = 0
+        " 显示诊断信息，语言标注出代码问题，影响文件打开速度
+        let g:ycm_show_diagnostics_ui = 0
+        let g:ycm_server_log_level = 'info'
+
+        let g:ycm_global_ycm_extra_conf='~/.vim/.ycm_extra_conf.py'
+
+        " enable completion from tags
+        let g:ycm_collect_identifiers_from_tags_files = 1
+        " 从第3个键入字符就开始罗列匹配项
+        let g:ycm_min_num_of_chars_for_completion=2
+        "在注释输入中也能补全
+        let g:ycm_complete_in_comments = 1
+        "在字符串输入中也能补全
+        let g:ycm_complete_in_strings = 1
+        "注释和字符串中的文字也会被收入补全
+        let g:ycm_collect_identifiers_from_comments_and_strings = 0
+        " 禁止缓存匹配项,每次都重新生成匹配项
+        let g:ycm_cache_omnifunc=0    
+        " 语法关键字补全
+        let g:ycm_seed_identifiers_with_syntax=1    
+
+        "离开插入模式后自动关闭预览窗口
+        autocmd InsertLeave * if pumvisible() == 0|pclose|endif    
+
+        "回车即选中当前项
+        inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"    
+
+        " remap Ultisnips for compatibility for YCM
+        "插入模式下直接通过<C-j>键来触发UltiSnips的代码块补全
+        let g:UltiSnipsExpandTrigger = '<C-j>'
+        "弹出UltiSnips的可用列表,由于不常用, 所以这里设置成了特殊的<C-i>映射
+        "let g:UltiSnipsListSnippets="<C-i>"
+        "<C-j>跳转的到下一个代码块可编辑区
+        let g:UltiSnipsJumpForwardTrigger = '<C-j>'
+        "<C-k>跳转到上一个代码块可编辑区
+        let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
+
+        " 语义补全触发键
+        let g:ycm_key_invoke_completion = '<c-z>'
+
+        noremap <c-z> <NOP>
+
+        let g:ycm_semantic_triggers =  {
+                    \ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
+                    \ 'cs,lua,javascript': ['re!\w{2}'],
+                    \ }
+
+        let g:ycm_filetype_whitelist = {
+			\ "c":1,
+			\ "cpp":1,
+			\ "python":1,
+			\ "sh":1,
+			\ "zsh":1,
+			\ "go":1,
+			\ }
+
+        " For snippet_complete marker.
+        if !exists("g:spf13_no_conceal")
+            if has('conceal')
+                set conceallevel=2 concealcursor=i
+            endif
+        endif
+
+        " 让vim的补全菜单行为与一般ide一致
+        set completeopt=longest,menu
+        "set completeopt=menu,menuone
+
+        "force recomile with syntastic
+        nnoremap <F5> :YcmForceCompileAndDiagnostics<CR>    
+
+        "YCM提供的跳跃功能采用了vim的jumplist，往前跳和往后跳的快捷键为Ctrl+O以及Ctrl+I
+    endif
+" }
+

@@ -1,0 +1,54 @@
+
+
+" vim General {
+
+    " 设置vim内与终端的互相拷贝
+    if has('mouse')
+        set mouse-=a 
+    endif
+
+    " 打开文件时自动定位到上次关闭的位置
+    if has("autocmd")
+        au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+    endif
+
+    set background=dark
+" }
+
+" VIM Ui {
+    set nu                  " 显示行号 "
+    set relativenumber      " 显示相对行号"
+
+    set ts=4
+    set expandtab
+    set tabstop=4
+    set autoindent          " 自动对齐(上一行)"
+    set smartindent         " 智能对齐 "
+    set shiftwidth=4
+    set softtabstop=4
+
+    set hlsearch            "高亮搜索项
+    set cursorline          "突出显示当前行"
+    set cursorcolumn        "突出显示当前列"
+    set nocompatible        " be iMproved, required
+
+    " 总显示最后一个窗口的状态行；设为1则窗口数多于一个的时候显示最后一个窗口的状态行；0不显示最后一个窗口的状态行
+    set laststatus=2
+    " }
+
+" 设置文本 {
+    set fenc=utf-8  
+    set encoding=utf-8
+
+    set fileencodings=ucs-bom,utf-8,gbk
+    set fileencoding=gb2312
+    set termencoding=utf-8
+    set ignorecase          " 忽略大小写信息"
+    set smartcase           " 如果搜索模式中包含大写字符，不使用ignorecase选项 "
+" }
+
+" 设置map键 {
+    let mapleader=','
+
+    
+" }
