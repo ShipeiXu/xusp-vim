@@ -1,22 +1,31 @@
 #!/bin/bash -
 #===============================================================================
 #
-#          FILE: check_and_install_vim.sh
+#          FILE: my_mac.sh
 #
-#         USAGE: ./check_and_install_vim.sh
+#         USAGE: ./my_mac.sh
 #
-#   DESCRIPTION: check the linux or mac env that the vim is sutiable for vim_script
+#   DESCRIPTION: install my all env in a mac, it must be Idempotent
 #
 #       OPTIONS: ---
 #  REQUIREMENTS: ---
 #          BUGS: ---
 #         NOTES: ---
-#        AUTHOR: ShipeiXu (xusp), xushipei2009@163.com
-#  ORGANIZATION: vpn
-#       CREATED: 2018/05/07 10时39分16秒
+#        AUTHOR: YOUR NAME (xusp) 
+#  ORGANIZATION: 
+#       CREATED: 2018/11/17 22时27分41秒
 #      REVISION:  ---
 #===============================================================================
 
 set -o nounset                                  # Treat unset variables as an error
 
-#确定vim支持youcompleteme
+#1. install brew
+
+#2. install iterms
+
+#3. insall my vim(and plugins)
+./check_and_install_vim.sh
+./check_and_compile_ycm.sh
+
+#4. set my color
+

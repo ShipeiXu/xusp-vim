@@ -17,4 +17,15 @@
 #      REVISION:  ---
 #===============================================================================
 
+set -o nounset                                  # Treat unset variables as an error
 
+#mac环境
+#1. 进入vim安装所有插件
+#2. 安装youcompleteme
+cd ~/.vim/bundle/YouCompleteMe
+#安装c系支持
+./install.sh --clang-completer
+
+#可能会提示缺少东西，执行提示的命令即可
+
+#3. 安装后，还可能提示错误，谷歌之

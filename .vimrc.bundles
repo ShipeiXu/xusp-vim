@@ -20,9 +20,9 @@
     Bundle 'VundleVim/Vundle.vim'
 
     " ycm  代码补全, snippets代码块补全
-    Bundle 'Valloric/YouCompleteMe'
     Bundle 'honza/vim-snippets'
     Bundle 'SirVer/ultisnips'
+    Bundle 'Valloric/YouCompleteMe'
 
     " tagbar:函数名列表, easygrep, 搜索, nc:注释功能
     Bundle 'majutsushi/tagbar'
@@ -51,7 +51,7 @@
     Bundle 'luochen1990/rainbow'
 
     "Bundle 'klen/python-mode'
-    Bundle 'spf13/PIV'
+    "Bundle 'spf13/PIV'
 
 "    Bundle 'octol/vim-cpp-enhanced-highlight'
     
@@ -192,7 +192,7 @@ endif
         let g:ycm_show_diagnostics_ui = 0
         let g:ycm_server_log_level = 'info'
 
-        let g:ycm_global_ycm_extra_conf='~/.vim/.ycm_extra_conf.py'
+        let g:ycm_global_ycm_extra_conf='~/.vim/bundle/YouCompleteMe/.ycm_extra_conf.py'
 
         " enable completion from tags
         let g:ycm_collect_identifiers_from_tags_files = 1
