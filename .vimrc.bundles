@@ -41,8 +41,8 @@
     Bundle 'scrooloose/nerdtree'
     Bundle 'Xuyuanp/nerdtree-git-plugin'
 
-    Bundle 'altercation/vim-colors-solarized'
-    Bundle 'spf13/vim-colors'
+    "Bundle 'altercation/vim-colors-solarized'
+    "Bundle 'spf13/vim-colors'
     Bundle 'flazz/vim-colorschemes'
     Bundle 'tpope/vim-repeat'
     Bundle 'jiangmiao/auto-pairs'
