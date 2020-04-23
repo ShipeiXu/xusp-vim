@@ -64,7 +64,7 @@ if isdirectory(expand("~/.vim/bundle/tagbar"))
     nnoremap <Leader>tt :TagbarToggle<CR>  " 将开启tagbar的快捷键设置为　<Leader>tt
     let g:tagbar_ctags_bin='/usr/local/bin/ctags'  " 设置ctags所在路径
     "let g:tagbar_width=30　" 设置tagbar的宽度
-    "autocmd BufReadPost *.cpp,*.c,*.h,*.hpp,*.cc,*.cxx call tagbar#autoopen()　" 在某些情况下自动打开tagbar
+    autocmd BufReadPost *.cpp,*.c,*.h,*.hpp,*.cc,*.cxx call tagbar#autoopen()　" 在某些情况下自动打开tagbar
 endif
 
 " easygrep 配置
@@ -95,6 +95,7 @@ if isdirectory(expand("~/.vim/bundle/nerdcommenter"))
 endif
 
 " ctrlp.vim
+" 这是一个超赞的插件，如果使用过sublime-text2，那么肯定很熟悉ctrlp。它可以快速的帮助我们找到项目中的文件。在vim normal模式下，按下ctrl+p，然后输入你要寻找的文件就行了。当然还有其他一些快捷查找键，如正则查找等
 if isdirectory(expand("~/.vim/bundle/ctrlp.vim"))
     let g:ctrlp_map = '<leader>p'
     let g:ctrlp_cmd = 'CtrlP'
@@ -111,7 +112,6 @@ if isdirectory(expand("~/.vim/bundle/ctrlp.vim"))
     let g:ctrlp_mruf_max=500
     let g:ctrlp_follow_symlinks=1
 endif
-
 
 "8. vim-surround 配置 
 if isdirectory(expand("~/.vim/bundle/vim-surround"))
@@ -161,10 +161,18 @@ if isdirectory(expand("~/.vim/bundle/vim-colorschemes"))
     colorscheme solarized
 endif
 
-" nerdtree
+" nerdtree,项目目录
+" o 打开关闭文件或者目录
+" t 在标签页中打开
+" p 到上层目录
+" P 到根目录
+" K 到第一个节点
+" J 到最后一个节点
+" u 打开上层目录
 if isdirectory(expand("~/.vim/bundle/nerdtree"))
     map <F3> :NERDTreeMirror<CR>
     map <F3> :NERDTreeToggle<CR>
+    "autocmd vimenter * NERDTree "自动打开nerdtree"
 endif
 
 " nerdtree-git-plugin
